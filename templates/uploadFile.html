@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/clipsViewer.css">
+    <link rel="stylesheet" href="/static/css/uploadPage.css">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    {% if current_user.is_authenticated %}
+    <div class="uploadContainer">
+        <div class="uploadBox">
+            <h1>Upload Clip</h1>
+            <label class="uploadField">
+                <input class="uploadInput" type="file" accept=".mp4, .mov"/>
+                +
+            </label>
+            <div class="progressBar">
+                <div class="progressPercentage">0%</div>
+                <div class="innerBar"></div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    
+    {% endif %}
+</body>
+<script src="/static/js/uploadPage.js"></script>
+</html>

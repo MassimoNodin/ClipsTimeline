@@ -1,0 +1,366 @@
+.clipView {
+    width: 55vw;
+    height: calc(55vw / 1.78);
+    border-radius: 5px;
+    transition: 0s;
+}
+
+*:fullscreen {
+    padding: 0;
+    cursor: none;
+    background-color: black;
+}
+
+*:fullscreen.tempshow {
+    cursor: default !important;
+}
+
+*:fullscreen .clipView {
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
+*:fullscreen .downloadButton,
+*:fullscreen .shareButton,
+*:fullscreen .videoControls ~ * {
+    display: none !important;
+}
+
+*:fullscreen .videoControls {
+    margin-top: calc(-7.8vw / 1.78);
+    height: 4vw !important;
+}
+
+*:fullscreen .clipView:hover ~ .videoControls {
+    opacity: 0;
+}
+
+.clipView.processing {
+    pointer-events: none;
+} 
+
+.videoControls.hide {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.videoControls {
+    position: absolute;
+    margin-top: calc(-5.8vw / 1.78);
+    height: 3vw !important;
+    display: flex;
+    opacity: 0;
+    transition: 0.3s;
+    transition-property: opacity;
+    pointer-events: none;
+    z-index: 10;
+    border-radius: 0;
+}
+
+*:fullscreen .editButton {
+    margin-right: 6px !important;
+}
+
+*:fullscreen .videoControls.tempshow {
+    opacity: 1 !important;
+}
+
+*:fullscreen .videoControls.tempshow,
+.videoControls:hover,
+.clipView:hover ~ .videoControls {
+    opacity: 1;
+    pointer-events: all;
+    background-color: #252525cf;
+}
+
+.togglePause {
+    padding-left: 10px;
+    opacity: 1;
+}
+
+.shareButton,
+.editButton {
+    display: none;
+}
+
+.shareButton.showing,
+.editButton.showing {
+    display: block;
+}
+
+.downloadButton {
+    margin-left: 2px !important;
+    margin-right: 7px !important;
+}
+
+.togglePause * {
+    transition: 0s;
+}
+
+.volumeSelect,
+.shareButton,
+.togglePause,
+.editButton,
+.downloadButton,
+.fullscreenButton {
+    font-size: 1.5vw;
+    transition: 0.3s;
+    transition-property: background-color, transform;
+    padding-left: 1%;
+    margin-left: 5px;
+    margin-right: 10px;
+    width: calc(3vw - 15px);
+    border-radius: 5px;
+}
+
+.volumeSelect:hover {
+    cursor: pointer;
+}
+
+.volumeBoundary:hover,
+.volumeSelect:hover .volumeBoundary {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.volumeBoundary:hover,
+.volumeSelect:hover .volumeOuterBar {
+    opacity: 1;
+}
+
+.volumeBoundary {
+    width: 3vw;
+    margin-left: -0.5vw;
+    height: calc(90px + 1.5vw);
+    margin-top:calc(-90px - 1.5vw);
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    pointer-events: none;
+    z-index: 20;
+}
+
+.volumeBoundary * {
+    transition: 0s !important;
+}
+
+.volumeOuterBar {
+    margin-top: 20px;
+    border-radius: 10px;
+    width: 5px;
+    height: 80px;
+    background-color: white;
+    display: flex;
+    flex-direction: column-reverse;
+    opacity: 0;
+}
+
+.volumeOuterBar.showing {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.volumePotInnerBar {
+    border-radius: 10px;
+    background-color: #939393;
+}
+
+.volumeInnerBar {
+    height: 80px;
+    position: absolute;
+    width: 5px;
+    border-radius: 10px;
+    background-color: #606060;
+}
+
+.togglePause:hover,
+.shareButton:hover,
+.editButton:hover,
+.downloadButton:hover,
+.fullscreenButton:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.videoTime {
+    display: flex;
+    height: 3vw;
+    align-items: center;
+    font-size: 1vw;
+}
+
+.playerVideoCurrentTime {
+    margin-right: 0.5vw;
+}
+
+.playerVideoVideoLength {
+    margin-left: 0.5vw;
+}
+
+*:fullscreen .playerVideoCurrentTime {
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+
+*:fullscreen .playerVideoVideoLength {
+    margin-left: 1vw;
+}
+
+*:fullscreen .videoTime {
+    font-size: 2vw;
+    height: 4vw;
+}
+
+.videoTimeline {
+    cursor: pointer;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    border: none;
+    z-index: 11;
+}
+
+.videoTimeline .videoTimelineBar{
+    background: #606060;
+    margin: 5px;
+    height: 5px;
+    border-radius: 5px;
+    flex: 1;
+    z-index: 5;
+}
+
+.videoTimeline .videoTimelineBar .videoTimelineBarInner{
+    border-radius: 5px;
+    background-color: rgb(255 255 255);
+    width: 0%;
+    height: 100%;
+    z-index: 7;
+    position: relative;
+    transition: 0s;
+}
+
+.fa-play {
+    width: 50%;
+    margin-left: -5px;
+}
+
+.togglePause .fa-pause {
+    width: 0;
+    opacity: 0;
+}
+
+.togglePause.playing .fa-play {
+    width: 0;
+    opacity: 0;
+    margin-left: 0;
+}
+
+.togglePause.playing .fa-pause {
+    opacity: 1;
+    width: 100%;
+}
+
+.seekBar {
+    background-color: #939393 !important;
+    margin-top: -5px;
+    opacity: 0;
+    transition-property: opacity;
+    z-index: 6 !important;
+}
+
+.seekBar.showing {
+    opacity: 1;
+}
+
+.seekBar.showing ~ .seekCircle {
+    opacity: 1;
+}
+
+.seekCircle {
+    margin-top: calc(-2.5px - 0.75vw) !important;
+}
+
+.volumeCircle,
+.seekCircle {
+    width: 1vw;
+    height: 1vw;
+    border-radius: 20px;
+    background-color: white;
+    border-style: solid;
+    border-width: 0.25vw;
+    border-color: #939393;
+    margin-top: -1vw;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 8;
+    position: relative;
+    transition: 0s;
+}
+
+.seekCircle div {
+    margin-top: -25px;
+    margin-left: calc(0.5vw - 30px);
+    font-size: 15px;
+    width: 60px;
+    height: 20px;
+    background-color: #252525;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.volumeCircle {
+    margin-left: -0.5vw;
+    width: 1vw;
+    height: 1vw;
+    opacity: 1;
+    position: absolute;
+}
+
+.volumeCircle div {
+    margin-top: -25px;
+    margin-left: -20px;
+    font-size: 15px;
+    width: 60px;
+    height: 20px;
+    background-color: #252525;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.volumeSelect i {
+    padding: 0.5vw;
+    margin: 0 0 0 -0.5vw;
+}
+
+@media only screen and (max-width: 700px) {
+    .videoControls {
+        margin-left: 1.5%;
+        width: 85%;
+        margin-top: calc(-23.8vw / 1.78);
+        height: 11vw !important;
+    }
+
+    .volumeSelect,
+    .togglePause,
+    .shareButton,
+    .editButton,
+    .downloadButton,
+    .fullscreenButton {
+        font-size: 5vw;
+        width: 5.5vw;
+    }
+
+    .togglePause {
+        margin-left: 3%;
+        margin-right: 1%;
+    }
+
+    .volumeSelect {
+        display: none;
+    }
+
+    .videoTime {
+        font-size: 3vw;
+        height: 11vw;
+    }
+}

@@ -1,0 +1,18 @@
+{"columns":
+[
+    ["id", "TEXT"],
+    ["fileTitle", "TEXT"],
+    ["fileDesc", "TEXT"],
+    ["game", "TEXT"],
+    ["year", "INTEGER"],
+    ["month", "INTEGER"],
+    ["day", "INTEGER"],
+    ["tags", "TEXT"],
+    ["fileType", "TEXT"],
+    ["thumbnailTS", "FLOAT"],
+    ["ownerID", "TEXT"],
+    ["processed", "INTEGER"],
+    ["likes", "INTEGER"],
+    ["dislikes", "INTEGER"]
+]
+}

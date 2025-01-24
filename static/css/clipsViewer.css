@@ -1,0 +1,458 @@
+@font-face { font-family: dosisBold; src: url('/static/fonts/Dosis-Bold.ttf'); } 
+@font-face { font-family: dosis; src: url('/static/fonts/Dosis-Regular.ttf'); }
+
+* {
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: dosis;
+}
+
+b {
+    font-family: 'dosisBold';
+}
+
+button { all: unset; }
+
+body {
+    background-color: #141414;
+    position: relative;
+    overflow: hidden;
+}
+
+.gameSelect {
+    width: 100%;
+    overflow-x:auto;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+}
+
+.gameChoice {
+    margin: 25px;
+    border-radius: 5px;
+    background-color: #252525;
+    overflow: hidden;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.gameChoice.selected ~ .gameChoice{
+    filter: blur(2px);
+    cursor: default;
+    pointer-events: none;
+}
+
+.gameChoice:has(~ .gameChoice.selected) {
+    filter: blur(2px);
+    cursor: default;
+    pointer-events: none;
+}
+
+.gameChoice:hover, .gameChoice.selected {
+    transform: scale(1.1);
+    box-shadow: rgb(255 255 255 / 10%) 0px 0 8px 8px;
+    border-color: rgb(255 255 255 / 10%);
+}
+
+.gameChoice img {
+    height: 12.5vw;
+}
+
+.gameChoice h1 {
+    margin: 5px 0 8px 0;
+    text-align: center;
+    width: 100%;
+    font-size: 1.5vw;
+    font-family: dosisBold;
+}
+
+.yearTimeline {
+    min-height: 200px;
+    min-width: 300px;
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+}
+
+.yearTimeline.reveal {
+    transition-duration: 1s;
+    opacity: 1;
+}
+
+.yearTimeline::-webkit-scrollbar {
+    display: none;
+}
+
+.yearTimeline.timelineLine {
+    background: linear-gradient(180deg, 
+        rgba(0,0,0,0) calc(45% - 1px), 
+        rgb(91, 91, 91) calc(45%), 
+        rgba(0,0,0,0) calc(45% + 1px)
+    );
+}
+
+.dissapearAbove, .hiddenAbove{
+    margin-top: -200% !important;
+    opacity: 0;
+    transition: 1s;
+}
+
+
+.dissapearBelow, .hiddenBelow {
+    margin-top: 300% !important;
+    opacity: 0;
+    transition: 1s;
+    position: fixed;
+}
+
+.appear {
+    margin-top: 0 !important;
+    opacity: 1 !important;
+}
+
+.istant {
+    transition: 0s;
+}
+
+.belowButton {
+    transform: rotate(180deg);
+    bottom: 0;
+}
+
+.movementButton{
+    opacity: 0;
+    pointer-events: none;
+    margin-left: calc(50% - 1.5vw);
+    padding-bottom: 5vw;
+    width: 3vw;
+    position: fixed;
+    z-index: 2;
+    cursor:pointer;
+    transition: 1s;
+}
+
+.movementButton.buttonShowing {
+    pointer-events: all;
+    opacity: 0.5;
+}
+
+.movementButton h1,.movementButton h2,.movementButton h3{
+    text-align: center;
+    font-size: 10vw;
+    width: 100%;
+    position: absolute;
+    transition: 0.5s;
+    height: 3vw;
+}
+
+.movementButton h2 {
+    font-size: 8vw;
+    opacity: 0;
+    margin-top: 1vw;
+}
+
+.movementButton h3 {
+    font-size: 6vw;
+    opacity: 0;
+    margin-top: 1.5vw;
+}
+
+.movementButton:hover {
+    opacity: 1;
+    transition-delay: 0s;
+}
+
+.movementButton:hover h2{
+    margin-top: 2vw;
+    opacity: 1;
+}
+
+.movementButton:hover h3{
+    margin-top: 4vw;
+    opacity: 1;
+}
+
+.discoveryContainer {
+    width: 100%;
+    height: calc(100vh - 200px);
+    margin-top: 77px;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.yearComponent {
+    margin: auto;
+    border-radius: 2px;
+    min-width: 7%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #141414;
+    transition: 0.3s;
+}
+
+.yearComponent:first-child {
+    margin-left: 10vw;
+}
+
+.yearComponent:last-child {
+    margin-right: 10vw;
+}
+
+.yearComponent.selected ~ .yearComponent{
+    filter: blur(2px);
+    cursor: default;
+    pointer-events: none;
+}
+
+.yearComponent:has(~ .yearComponent.selected) {
+    filter: blur(2px);
+    cursor: default;
+    pointer-events: none;
+}
+
+.yearComponent.selected {
+    transform:scale(1.1);
+    cursor: default;
+    border-radius: 10px;
+    background-color: #252525;
+}
+
+.yearComponent:hover {
+    transform:scale(1.1);
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #252525;
+}
+
+.yearComponent h1 {
+    margin-top: 10px;
+    font-size: 2vw;
+    font-family: dosisBold;
+}
+
+.yearComponent h2 {
+    margin-top: 10px;
+    font-size: 0.7vw;
+    margin-bottom: 10px;
+}
+
+.videoSelect {
+    max-height: 350px;
+    min-height: 200px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: absolute;
+    align-content: flex-start;
+}
+
+.clipBox {
+    width: 21vw;
+    margin: 2vw;
+    background-color: #252525;
+    border-radius: 5px;
+    transition: 0.3s;
+    height: 0%;
+}
+
+.clipBox:hover {
+    transform: scale(1.05);
+    background-color: #393939;
+    cursor: pointer;
+}
+
+.clipThumbnail {
+    margin-left: 2.5%;
+    margin-top: 2.5%;
+    width: 95%;
+}
+
+.clipPreviewTitle {
+    padding: 0.5vw;
+    font-size: 1vw;
+    min-height: 1vw;
+    font-family: 'dosisBold';
+    text-align: center;
+}
+
+.unsignedTimeline {
+    height: calc(100vh - 76.5px);
+    margin-top: 76.5px;
+    display: flex;
+}
+
+.unsignedTimeline split {
+    width: calc(100% / 3);
+    box-shadow: 10px 25px 50px #1d1d1d;
+    z-index: 12;
+}
+
+.unsignedTimeline split:nth-of-type(2) {
+    z-index: 11;
+}
+
+.unsignedTimeline split:nth-of-type(3) {
+    z-index: 10;
+}
+
+.timelinePreviewImg {
+    width: 95%;
+    margin-top: 30vh;
+}
+
+.unsignedTimeline split:nth-of-type(2) .timelinePreviewImg {
+    margin-top: 25vh;
+    margin-left: 10%;
+    width: 80%;
+}
+
+.unsignedTimeline split:nth-of-type(3) .timelinePreviewImg {
+    margin-top: 22vh;
+    margin-left: 10%;
+    width: 80%;
+}
+
+.unsignedTimeline split h1 {
+    font-size: 3vw;
+    margin-left: 4vw;
+    margin-top: 5vh;
+    font-family: dosisBold;
+}
+
+.unsignedTimeline split h2 {
+    font-size: 1.5vw;
+    margin-left: 4vw;
+    margin-top: 2vh;
+}
+
+@media only screen and (max-width: 700px) {
+    .unsignedTimeline {
+        flex-direction: column;
+        overflow: auto;
+        min-height: calc(100vh - 76.5px);
+        height: auto;
+    }
+
+    .unsignedTimeline split {
+        width: 100%;
+        height: calc(100vh - 76.5px);
+    }
+
+    .clipPreviewTitle {
+        font-size: 3.5vw !important;
+    }
+
+    .timelinePreviewImg {
+        margin-top: 5vh !important;
+    }
+
+    .yearComponent:first-child {
+        margin-left: 2vw;
+    }
+
+    .yearComponent:last-child {
+        margin-right: 2vw;
+    }
+
+    .yearComponent {
+        min-width: 12%;
+    }
+
+    .yearComponent h1 {
+        font-size: 100%;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .yearComponent h2 {
+        font-size: 2vw;
+    }
+
+    .yearTimeline.timelineLine {
+        background: linear-gradient(180deg, 
+            rgba(0,0,0,0) calc(47% - 1px), 
+            rgb(91, 91, 91) calc(47%), 
+            rgba(0,0,0,0) calc(47% + 1px)
+        );
+    }
+
+    .gameSelect {
+        width: 94%;
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+
+    .videoSelect::-webkit-scrollbar,
+    .gameSelect::-webkit-scrollbar {
+        display: none;
+    }
+
+    .gameChoice:first-of-type {
+        margin-left: 40px;
+    }
+
+    .gameChoice {
+        height: 10%;
+        flex: 0 0 auto;
+        margin: 10px;
+    }
+
+    .gameChoice img {
+        height: 22.5vw;
+    }
+
+    .gameChoice h1 {
+        font-size: 3.5vw;
+    }
+
+    .movementButton {
+        width: 100vw;
+        margin-left: 0;
+        height: 5vh;
+        padding-bottom: 10vh;
+    }
+
+    .movementButton h1 {
+        font-size: 20vw;
+    }
+
+    .movementButton h2, .movementButton h3 {
+        display: none;
+    }
+
+    .videoSelect {
+        overflow: auto;
+        max-height: none;
+        margin-top: 65%;
+        height: 100%;
+        border-top-style: solid;
+        border-color: #525252;
+        border-width: 3px;
+        padding-bottom: 25px;
+        padding-top: 10px;
+    }
+
+    .clipBox {
+        width: 80vw;
+        height: 55vw;
+    }
+
+    .videoSelect.appear {
+        margin-top: 65% !important;
+    }
+
+    .belowButton {
+        padding-top: 20vh
+    }
+}

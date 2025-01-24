@@ -1,0 +1,336 @@
+* {
+    transition: 0.3s;
+}
+
+.navBar {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    top: 0;
+    width: 100%;
+    height: 65px;
+    z-index: 5;
+    padding-bottom: 10px;
+    border-bottom-style: solid;
+    background-color: #141414;
+}
+
+a { all: unset; }
+
+.navBarCenter {
+    width: 300px !important;
+    display: flex;
+    justify-content: center;
+}
+
+.navBarCenter img {
+    height: 40px;
+    margin-top: 20px;
+}
+
+.navBarCenter a:first-of-type {
+    font-family: dosisBold;
+    margin: 10px;
+    text-align: center;
+    font-size: 40px;
+    transition: 0.3s;
+}
+
+.navBarCenter:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.profileDiv {
+    margin-top: 5px;
+    padding: 5px 5px 0 5px;
+    height: 60px;
+    margin-right: 10px;
+    transition: 0.75s;
+    border-radius: 5px;
+    display: flex;
+}
+
+.profileDiv a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.profileDiv:hover {
+    background-color: #252525;
+}
+
+.profilePic {
+    height: 40px;
+    width: 40px;
+    border-radius: 5px;
+}
+
+.profileName {
+    text-align: center;
+    font-size: 12px;
+    font-family: dosisBold;
+}
+
+.profileDiv:hover .navbarLogoutButton {
+    width: 70px;
+    color: white;
+}
+
+.navbarLogoutButton {
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-top: 3px;
+    text-align: center;
+    height: 40px;
+    overflow: hidden;
+    background-color: #df2a2a;
+    color: #df2a2a;
+    width: 0px;
+    transition: 0.75s;
+    font-family: dosisBold;
+    cursor: pointer;
+}
+
+.navbarLoginButton {
+    padding: 10px 0 0 0;
+    border-radius: 5px;
+    margin-right: 15px;
+    margin-top: 17px;
+    text-align: center;
+    overflow: hidden;
+    height: 30px;
+    width: 6vw;
+    transition: 0.75s;
+    font-family: dosisBold;
+}
+
+.navbarLoginButton:hover {
+    background-color: #2f2f2f;
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.navBarRight {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.navBarLeft {
+    display: flex;
+}
+
+@media screen and (min-width: 900px) {
+    .navBarPageButton {
+        margin: 28.75px 1.5vw 0 1.5vw !important;
+        font-size: 22.5px !important;
+    }
+}
+
+.navBarPageButton {
+    margin: calc((70px - 2.5vw) / 2) 1.5vw 0 1.5vw;
+    font-size: 2.5vw;
+    z-index: 6;
+    transition: 0.3s;
+    color:rgb(170, 170, 170);
+}
+
+.navBarPageButton.selected {
+    pointer-events: none;
+    color: white;
+}
+
+.navBarPageButton:hover {
+    cursor: pointer;
+    color: white;
+}
+
+.navBarColumn {
+    width: calc((100% - 300px)/2);
+}
+
+.dropdownNavbarButton,
+.dropdownNavbar {
+    display: none;
+}
+
+@media only screen and (max-width: 700px) {
+    .navBarLeft {
+        display: none !important;
+    }
+
+    .uploadPageButton {
+        display: none;
+    }
+
+    .navBarRight .profileDiv {
+        display: none;
+    }
+
+    .navBarColumn {
+        width: 15%;
+    }
+
+    .navBarCenter {
+        width: auto !important;
+        display: flex;
+        justify-content: center;
+        margin-top: 1vw;
+        margin-left: 10px;
+    }
+
+    .navBarCenter img {
+        height: 8vw;
+        margin-top: 3.5vw;
+    }
+
+    .navBarCenter a:first-of-type {
+        position: relative;
+        font-size: 8vw;
+        transition: 0s;
+    }
+
+    .navBar {
+        height: 18vw;
+        padding-bottom: 0;
+        transition: 0s;
+        justify-content: space-between;
+    }
+
+    .dropdownNavbarButton {
+        font-size: 10vw;
+        margin-right: 5vw;
+        display: block;
+    }
+
+    .dropdownNavbarButton.hide {
+        display: none;
+    }
+
+    .dropdownNavbar {
+        top: 0;
+        right: 0;
+        position: fixed;
+        display:flex;
+        height: 100%;
+        width: 55%;
+        background-color: #252525;
+        z-index: 100;
+        margin-right: -60%;
+        transition: 0.5s;
+        transition-property: margin-right;
+        flex-direction: column;
+    }
+
+    .dropdownNavbar.show {
+        margin-right: 0;
+    }
+
+    .dropdownOption {
+        display: flex;
+        align-items: center;
+        font-size: 3vw;
+        border-bottom-style: solid;
+        padding: 3vw;
+        justify-content: space-between;
+        border-color: #ffffff59;
+    }
+
+    .dropdownOption i {
+        font-size: 5vw;
+        margin-left: 3vw;
+    }
+
+    .dropdownOption img {
+        margin-left: 1vw;
+        height: 10vw;
+        border-radius: 5px;
+    }
+
+    .dropdownOption h1 {
+        margin-right: 3vw;
+        margin-left: 7vw;
+        font-size: 5.5vw;
+    }
+
+    .dropdownCloseButton {
+        margin-top: -1vw;
+        padding-bottom: 1vw;
+        padding-left: 42vw;
+        height: 18vw;
+        font-size: 15vw;
+        border-bottom-style: solid;
+    }
+}
+
+.rotationWarning {
+    display: none;
+}
+
+@media only screen and (orientation: landscape) and (max-height: 400px) {
+    .rotationWarning:has(~ *:fullscreen),
+    body:not(:has( .fullscreen)) * {
+        display: none;
+        pointer-events: none;
+        opacity: 0;
+    } 
+
+    .rotationWarning:not(:has(~ *:fullscreen)) i,
+    .rotationWarning:not(:has(~ *:fullscreen)) {
+        display: flex !important;
+        opacity: 1;
+        font-size: 7vw;
+        gap: 2vw;
+        align-items: center;
+    }    
+}
+
+@media only screen and (max-width: 300px), only screen and (max-height: 400px) {
+    html {
+        background-color: #141414;
+    }
+}
+
+.popup.showing ~ * {
+    transition: filter 0.3s;
+    filter: blur(5px);
+    pointer-events: none !important;
+}
+
+*:has(~ .popup.showing) {
+    transition: filter 0.3s;
+    filter: blur(5px);
+    pointer-events: none !important;
+}
+
+.popup.showing {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.popup {
+    opacity: 0;
+    z-index: 100;
+    pointer-events: none;
+    position: absolute;
+    margin-top: -22.5vw;
+    width: 100vw;
+    height: 100vh;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.popup section {
+    background-color: #252525;
+    width: 65%;
+    padding: 2%;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #ffffff4d;
+}

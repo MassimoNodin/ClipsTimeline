@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clips Timeline</title>
+    <link rel="stylesheet" href="/static/css/mainPage.css">
+    <meta name="description" content="A Website Dedicated to Hosting and Displaying Clips">
+</head>
+<body>
+    <div class="deniedAccess popup">
+        <div>
+            You Aren't allowed to View These Clips
+        </div>
+        <h1>
+            Unfortunately the Access to these clips is Exclusive and can only be authorized by <a class="inlineInstagramLink" href="https://www.instagram.com/massimo.nodin">@massimo.nodin</a>
+        </h1>
+        <button onclick="closeDeniedAccess()">Return to Homepage</button>
+    </div>
+    <div class="mainTopBar">
+        <div class="websiteTitle">
+            <img src="/static/images/clipsViewerLogo.png" alt="/static/images/ImageNotFound.png">
+            <div>
+                Clips Viewer
+            </div>
+        </div>
+        <div class="menuButtons">
+            <button class="menuButton" onclick="menuButtonClick(true)">
+                <div>Menu</div>
+                <section>
+                    <div></div>
+                    <div></div>
+                </section>
+            </button>
+            <button class="closeMenuButton" onclick="menuButtonClick(false)">
+                <div>Close</div>
+                <svg height="24" viewBox="0 -960 960 960" width="24"><path fill="#ffffff" d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+            </button>
+        </div>
+    </div>
+    <div class="websiteContentHolder">
+        <div class="mainWebsiteInformation">
+            <div>
+                001 /<br>Homepage
+            </div>
+            <div>
+                Questions, Ideas, Requests?<br>Contact me via Instagram <a class="inlineInstagramLink" href="https://www.instagram.com/massimo.nodin">@massimo.nodin</a>
+            </div>
+        </div>
+        <div class="websiteOptions">
+            <div class="websiteOption">
+                <div class="optionNumber">01</div>
+                <a class="optionTextHolder" href="/timeline">
+                    <div>
+                        Timeline
+                    </div>
+                    <div>
+                        Timeline
+                    </div>
+                </a>
+            </div>
+            <div class="websiteOption">
+                <div class="optionNumber">02</div>
+                <a class="optionTextHolder" href="/upload">
+                    <div>
+                        Upload
+                    </div>
+                    <div>
+                        Upload
+                    </div>
+                </a>
+            </div>
+            <div class="websiteOption">
+                <div class="optionNumber">03</div>
+                <a class="optionTextHolder" href="/search">
+                    <div>
+                        Search
+                    </div>
+                    <div>
+                        Search
+                    </div>
+                </a>
+            </div>
+            <div class="websiteOption">
+                <div class="optionNumber">04</div>
+                <a class="optionTextHolder" href="/login">
+                    <div>
+                        Login
+                    </div>
+                    <div>
+                        Login
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/static/js/user.js"></script>
+<script src="/static/js/mainPage.js"></script>
+</html>

@@ -1,0 +1,38 @@
+.searchResults {
+    margin-top: 100px;
+}
+
+.searchBar {
+    margin: 100px 20vw 0 20vw;
+    width: 58vw;
+    height: 10vh;
+    font-size: 5vh;
+    overflow-x: auto;
+    resize: none;
+    background-color: #252525;
+    padding: 0px 1vw 0px 1vw;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+.videoSelect {
+    margin-top: 3vh;
+    max-height: 75vh !important;
+    min-height: 75vh !important;
+    overflow: auto !important;
+}
+
+.clipPreviewTitle .far,
+.clipPreviewTitle .fas {
+    margin-left: 5px;
+}
+
+@media only screen and (max-width: 700px) {
+    .searchBar {
+        width: 74vw;
+        margin: 25vw 7vw 0 7vw;
+        padding: 0px 5vw 0px 5vw;
+        font-size: 5vw;
+    }
+}

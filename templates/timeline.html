@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clips Timeline</title>
+    <link rel="stylesheet" href="/static/css/clipsViewer.css">
+    <link rel="stylesheet" href="/static/css/uploadPage.css">
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+    {% if current_user.is_authenticated %}
+    <button class="aboveButton movementButton" onclick="containerMovement(true)">
+        <h1>^</h1><h2>^</h2><h3>^</h3>
+    </button>
+    <button class="belowButton movementButton" onclick="containerMovement(false)">
+        <h1>^</h1><h2>^</h2><h3>^</h3>
+    </button>
+    <div class="discoveryContainer">
+        <div class="yearTimeline timelineLine">
+        </div>
+        <div class="gameSelect hiddenBelow">
+        </div>
+        <div class="videoSelect hiddenBelow">
+        </div>
+    </div>
+    {% else %}
+    <div class="unsignedTimeline">
+        <split>
+            <h1>
+                01 ~ Year Selection
+            </h1>
+            <h2>
+                Find a Year to view Clips From
+            </h2>
+            <img src="/static/images/timelinePreview.png" class="timelinePreviewImg">
+        </split>
+        <split>
+            <h1>
+                02 ~ Game Selection
+            </h1>
+            <h2>
+                Select a Game to view from the Selected Year
+            </h2>
+            <img src="/static/images/gameSelectPreview.png" class="timelinePreviewImg">
+        </split>
+        <split>
+            <h1>
+                03 ~ Clip Selection
+            </h1>
+            <h2>
+                Choose a clip from the previous Year and Game Selections
+            </h2>
+            <img src="/static/images/videoSelectPreview.png" class="timelinePreviewImg">
+        </split>
+    </div>
+    {% endif %}
+</body>
+<script src="/static/js/clipsViewer.js"></script>
+</html>

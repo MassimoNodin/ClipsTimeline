@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/clipsViewer.css">
+    <link rel="stylesheet" href="/static/css/clipsManage.css">
+    <link rel="stylesheet" href="/static/css/uploadPage.css">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="deleteConfirmation popup">
+        <section>
+            <h1>Clip Deletion Conformiation</h1>
+            <div>
+                <button onclick="cancelDeleteClip()">Cancel</button>
+                <button onclick="confirmDeleteClip()">Confirm Delete</button>
+            </div>
+        </section>
+    </div>
+    <div class="clipManageBox">
+        {% include 'videoPlayer.html' %}
+        <textarea class="titleEntry" placeholder="Clip Title"></textarea>
+        <textarea class="gameEntry" onfocusout="gameEntryOut()" onfocusin="gameEntryIn()"></textarea>
+        <div class="gameDropdown">
+            <div class="gameAbsDrop">
+            </div>
+        </div>
+        <button class="deleteClipButton" onclick="deleteClip()">
+            <i class="far fa-trash-alt"></i>
+        </button>
+        <h1 class="clipDescTitle">Clip Description</h1>
+        <textarea class="descEntry"></textarea>
+        <div class="YMDSplit">
+            <div>
+                <h1>Day</h1>
+                <input class="dayEntry" type="number">
+            </div>
+            <div>
+                <h1>Month</h1>
+                <input class="monthEntry" type="number">
+            </div>
+            <div>
+                <h1>Year</h1>
+                <input class="yearEntry" type="number">
+            </div>
+        </div>
+        <div class="tagSelect">
+            <h1>Tag Selection</h1>
+            <textarea class="tagEntry" placeholder="Write tags with # before and spaces inbetween"></textarea>
+        </div>
+        <div class="updateButtonSplit">
+            <button class="updateThumbnailButton available" onclick="updateThumbnail(this)">Update Thumbnail</button>
+            <button class="updateButton" onclick="updateInformation(this)">Update Clip Information</button>
+        </div>
+        <i class="mobileClose">^</i>
+    </div>
+</body>
+<script src="/static/js/uploadManage.js"></script>
+</html>

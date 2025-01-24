@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="/static/css/fileControls.css">
+<video class="clipView" playsinline onclick="togglePause(this)">
+</video>
+<div class="videoControls clipView">
+    <button class="togglePause" onclick="togglePause(this)">
+        <i class="fa fa-play"></i><i class="fa fa-pause"></i>
+    </button>
+    <div class="playerVideoCurrentTime videoTime">0:00</div>
+    <div class="videoTimeline" onclick="timelineClick(event)" onmousemove="timelineMouseOver(event)" onmouseleave="timelineMouseOut()">
+        <div class="videoTimelineBar">
+            <div class="videoTimelineBarInner"></div>
+            <div class="videoTimelineBarInner seekBar"></div>
+            <div class="seekCircle">
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div class="playerVideoVideoLength videoTime"></div>
+    <button class="volumeSelect">
+        <div class="volumeBoundary" onclick="volumeClick(event)" onmousemove="volumeMouseOver(event)">
+            <div class="volumeOuterBar">
+                <div class="volumeInnerBar"></div>
+                <div class="volumePotInnerBar"></div>
+                <div class="volumeCircle">
+                    <div>95%</div>
+                </div>
+            </div>
+        </div>
+        <i class="fa fa-volume-up" onclick="toggleMute()" onmouseenter="volumeMouseOut()"></i>
+    </button>
+    <button class="editButton" onclick="editButton()">
+        <i class="far fa-edit"></i>
+    </button>
+    <button class="downloadButton" onclick="downloadButton()">
+        <i class="fas fa-download"></i>
+    </button>
+    <button class="shareButton" onclick="shareButton()">
+        <i class="fas fa-share"></i>
+    </button>
+    <button class="fullscreenButton" onclick="fullscreenButton()">
+        <i class="fa fa-expand"></i>
+    </button>
+</div>
+<script src="/static/js/videoControls.js"></script>

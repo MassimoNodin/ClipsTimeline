@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="/static/css/navBar.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+<div class="rotationWarning">Please Rotate your Device <i class="fa fa-rotate-right"></i></div>
+<div class="navBar">
+    <div class="navBarLeft navBarColumn">
+        <a class="navBarPageButton {{'selected' if request.path == url_for('upload_file')}}" href="/upload">Upload</a>
+        <a class="navBarPageButton {{'selected' if request.path == url_for('clipsTimeline')}}" href="/timeline">Timeline</a>
+        <a class="navBarPageButton {{'selected' if request.path == url_for('search')}}" href="/search">Search</a>
+    </div>
+    <div class="navBarCenter navBarColumn">
+        <img src="/static/images/clipsViewerLogo.png">
+        <a href='/'>
+            Clips Viewer
+        </a>
+    </div>
+    <div class="navBarRight navBarColumn">
+        <button class="dropdownNavbarButton" onclick="dropdownToggle()">
+            <i class="fas fa-bars"></i>
+        </button>
+        {% if current_user.is_authenticated %}
+        <div class="profileDiv">
+            <a>
+                <img class="profilePic" id="profilePic">
+                <div class="profileName"></div>
+            </a>
+            <a class="navbarLogoutButton" href="/logout">Logout</a>
+        </div>
+        {% else %}
+        <a class="navbarLoginButton" href="/login">Login</a>
+        {% endif %}
+    </div>
+</div>
+<div class="dropdownNavbar">
+    <button class="dropdownCloseButton" onclick="dropdownToggle()">
+        <i class="fa fa-close"></i>
+    </button>
+    {% if request.path != url_for('upload_file') %}
+    <a class="dropdownOption" href="/upload">
+        <i class="fa fa-cloud-upload"></i>
+        <h1>Upload Clips</h1>
+    </a>
+    {% endif %}
+    {% if request.path != url_for('clipsTimeline') %}
+    <a class="dropdownOption" href="/timeline">
+        <i class="fas fa-photo-video"></i>
+        <h1>Clips Timeline</h1>
+    </a>
+    {% endif %}
+    {% if request.path != url_for('search') %}
+    <a class="dropdownOption" href="/search">
+        <i class="fas fa-search"></i>
+        <h1>Search Clips</h1>
+    </a>
+    {% endif %}
+    {% if current_user.is_authenticated %}
+    <a class="dropdownOption">
+        <img>
+        <h1>User Profile</h1>
+    </a>
+    {% else %}
+    <a class="dropdownOption" href="/login">
+        <i class="fas fa-user-circle"></i>
+        <h1>Login</h1>
+    </a>
+    {% endif %}
+</div>
+<script src="/static/js/user.js"></script>

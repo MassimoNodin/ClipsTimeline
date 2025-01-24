@@ -1,0 +1,213 @@
+body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.clipViewingBox {
+    width: 55vw;
+    padding: 1vw;
+    background-color: #252525;
+    border-radius: 15px;
+    margin-top: 65px;
+}
+
+.titleDateSplit {
+    margin: 5px 0 5px 0;
+    justify-content: space-between;
+    margin-right: 0.5vw;
+}
+
+.inlineProfileDiv,
+.titleDateSplit {
+    display: flex;
+}
+
+.inlineProfileDiv {
+    border-radius: 5px;
+    padding: 3px 5px 0 5px;
+    transition: 0.3s;
+    transform: scale(1.05);
+    border-style: solid;
+    border-color: #252525;
+    margin-right: 0.5vw;
+}
+
+.titleDateSplit h1{
+    font-size: 2vw !important;
+    font-family: dosisBold;
+}
+
+.titleDateSplit div {
+    display: flex;
+    font-size: 1.5vw;
+    text-align: right;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.titleDateSplit div img {
+    height: 2vw;
+    border-radius: 5px;
+}
+
+.titleDateSplit div h1 {
+    font-family: dosis;
+    width: auto;
+    display: flex;
+    font-size: 1.25vw !important;
+}
+
+.titleDateSplit b {
+    margin-right: 0.75vw;
+}
+
+.descGameSplit {
+    display: flex;
+}
+
+.descGameSplit h1 {
+    margin-top: 10px;
+    font-size: 1vw;
+}
+
+.gameIMG {
+    width: 10%;
+    border-radius: 2px;
+    margin-top: 5px;
+}
+
+.descGameSplit div:nth-of-type(1) {
+    width: 90%;
+}
+
+.inlineProfileDiv:hover {
+    background-color: #141414;
+    border-color: #434343;
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.inlineProfileDiv h1 {
+    margin-left: 0.5vw;
+}
+
+
+.popup h1 {
+    font-size: 5vw;
+    font-family: dosisBold;
+}
+
+.popup div {
+    margin-top: 1vh;
+    display: flex;
+    justify-content: center;
+}
+
+.popup button {
+    width: 40%;
+    margin: 1vh 1vw 1vh 1vw;
+    border-style: solid;
+    border-radius: 5px;
+    height: 10vw;
+    font-size: 3vw;
+    cursor: pointer;
+}
+
+.popup button:nth-of-type(1) {
+    border-color: #df2a2a;
+    background-color: #df2a2a;
+}
+
+.titleDateSplit div h1:hover .dateToolTip {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.dateToolTip {
+    position: absolute;
+    margin-top: -3.7vw;
+    margin-left: 0.5vw;
+    padding: 10px;
+    background-color: #3c3c3c;
+    border-radius: 5px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.dateToolTip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #3c3c3c transparent transparent transparent;
+  }
+
+@media only screen and (max-width: 700px) {
+    .clipViewingBox {
+        width: 88%;
+        margin-top: 0;
+    }
+
+    video.clipView {
+        width: 96% !important;
+        height: auto !important;
+        margin: 2%;
+    }
+
+    .descGameSplit {
+        margin: 5px 2% 5px 0;
+    }
+
+    .titleDateSplit {
+        margin: 5px 2.5vw 5px 0;
+    }
+
+    .titleDateSplit > h1 {
+        width: 50%;
+        margin-left: 2vw;
+        font-size: 3vw !important;
+    }
+
+    .titleDateSplit > div {
+        width: 50%;
+    }
+    
+    .titleDateSplit div h1 {
+        font-size: 2vw !important;
+    }
+
+    .titleDateSplit div img {
+        height: 4vw;
+        margin-top: -0.5vw;
+    }
+    
+    .inlineProfileDiv {
+        padding: 3px 2px 0 5px;
+    }
+
+    .descGameSplit h1 {
+        margin-left: 2vw;
+        font-size: 2vw;
+    }
+
+    .descGameSplit h1:nth-child(2) {
+        font-size: 5vw;
+        margin-bottom: 20px;
+    }
+
+    .descGameSplit div:nth-of-type(1) {
+        width: 85%;
+        margin-right: 5%;
+    }
+
+    .gameIMG {
+        height: 15vw;
+        width: auto;
+    }
+}

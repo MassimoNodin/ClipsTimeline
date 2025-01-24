@@ -1,0 +1,127 @@
+body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 81vh;
+}
+
+.clipBox {
+    height: auto;
+}
+
+.profileBox {
+    display: flex;
+    margin-top: 30vh;
+    flex-direction: column;
+    width: 80%;
+    padding: 1vw;
+    border-radius: 15px;
+    transition: 0.5s;
+    height: 85vh;
+}
+
+.userClips {
+    margin-top: 20px;
+    background-color: #252525;
+    border-radius: 5px;
+    width: 100%;
+    display: flex;
+    overflow: auto;
+    height: 90%;
+    border-radius: 5px;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.userInformation {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #252525;
+}
+
+.userClips a {
+    background-color: #393939;
+    border-style: solid;
+    border-color: #393939;
+}
+
+.userClips a:hover {
+    background-color: #252525;
+}
+
+.fullProfilePic {
+    width: 6vw;
+    padding-right: 30px;
+    border-right-style: solid;
+}
+
+.profileUsername {
+    border-right-style: solid;
+    height: 5vw;
+    font-size: 3vw;
+    padding: 1vw 2vw 0 2vw;
+}
+
+.profileClipAmount {
+    margin-left: 30px;
+}
+
+@media only screen and (max-width: 700px) {
+    body {
+        display: block;
+    }
+
+    .userClips {
+        max-height: calc(90vh - 55vw);
+        height: calc(90vh - 55vw);
+        flex-direction: column;
+        align-content: center;
+        flex-wrap: nowrap;
+    }
+
+    .fullProfilePic {
+        width: 15vw;
+        padding-right: 20px;
+    }
+
+    .profileUsername {
+        height: 14vw;
+        font-size: 8vw;
+        padding: 2vw 3vw 0 4vw;
+    }
+
+    .userInformation {
+        padding: 10px;
+    }
+
+    .profileClipAmount {
+        margin-left: 20px;
+        padding-right: 10px;
+        text-align: center;
+        font-size: 5vw;
+    }
+
+    .profileBox {
+        margin-top: 25vw;
+        margin-left: 10%;
+    }
+
+    .clipBox {
+        width: 90%;    flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+
+    .clipPreviewTitle {
+        font-size: 4vw;
+        min-height: 4vw;
+    }
+}

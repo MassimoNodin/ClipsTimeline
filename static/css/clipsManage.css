@@ -1,0 +1,653 @@
+* {
+    transition-property: opacity;
+    transition: 0.3s;
+}
+
+.clipManageBox {
+    margin-top: 100%;
+    margin-left: 12%;
+    width: 76%;
+    display: grid;
+    grid-template-areas: 
+                        'preview title'
+                        'preview description'
+                        'ymd buttons';
+    grid-template-columns:40% 60%;
+    background-color: #252525;
+    font-size: 3vh;
+    border-radius: 5px;
+    transition: 0s;
+}
+
+.clipManageBox .downloadButton {
+    display: none;
+    margin: none;
+}
+
+*:fullscreen .clipView {
+    margin: 0 !important;
+}
+
+.clipManageBox.showing {
+    margin-top: calc(40vh - 76.5px);
+}
+
+.clipPreview {
+    width: 90%;
+    border-radius: 5px;
+    margin: 5%;
+    grid-area: preview;
+    box-shadow: rgba(0, 0, 0, 0.55) 1.95px 1.95px 10.6px;
+    transition: 0.3s;
+}
+
+.gameDropdown {
+    position: absolute;
+    pointer-events: none;
+    grid-area: title;
+    margin-top: calc(3vw + 18px);
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    height: auto;
+    margin-left: 57.5vw;
+    text-align: center;
+    width: 10%;
+}
+
+.gameAbsDrop {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    margin-top: 0.7vw;
+    transition: 0s;
+}
+
+.gameTitle {
+    border-radius: 2px;
+    background-color: #141414;
+    border-style: solid;
+    border-width: 1px;
+    transition: 0s;
+    font-size: 1.5vw;
+    border-color: #545454;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.gameTitle:hover {
+    cursor: pointer;
+    background-color: #252525;
+}
+
+.gameEntry.focus ~ .gameDropdown .gameAbsDrop .gameTitle {
+    pointer-events: all;
+    opacity: 1;
+}
+
+.gameEntry {
+    width: 20%;
+    grid-area: title;
+    margin-top: 15px;
+    height: 3vw;
+    font-size: 1.5vw;
+    margin-left: 27vw;
+    z-index: 1;
+}
+
+.titleEntry {
+    grid-area: title;
+    margin-top: 15px;
+    height: 3vw;
+    font-size: 1.5vw;
+    width: 55%;
+}
+
+.gameEntry,
+.tagEntry,
+.titleEntry,
+.descEntry {
+    margin-right: 15px;
+    border-radius: 5px;
+    resize: none;
+    background-color: #141414;
+    padding: 10px 0px 0px 10px;
+    border: none;
+    outline: none;
+    transition-property: opacity;
+}
+
+.descEntry {
+    grid-area: description;
+    margin-top: 5vh;
+    font-size: 1vw;
+    margin-bottom: 2vh;
+}
+
+.YMDSplit div input:focus,
+.descEntry:focus,
+.titleEntry:focus {
+    border: none;
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.55) 1.95px 1.95px 10.6px;
+}
+
+.titleEntry::placeholder {
+    font-size: 1.5vw;
+}
+
+.clipDescTitle {
+    grid-area: description;
+    margin-top: calc(2vh - 2vw);
+    font-size: 2vw;
+}
+
+.YMDSplit {
+    grid-area: ymd;
+    display: flex;
+    justify-content: space-between;
+    width: 65%;
+    margin: -5% 0 0 0;
+    font-size: 1vw;
+}
+
+.YMDSplit div {
+    width: 6.6vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.YMDSplit div:nth-of-type(3) {
+    width: 10vw;
+}
+
+.YMDSplit div:nth-of-type(1),
+.YMDSplit div:nth-of-type(2) {
+    width: 8vw;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.yearEntry {
+    width: 6vw !important;
+    height: 2vw;
+}
+
+.YMDSplit h1 {
+    margin-bottom: 5px;
+}
+
+.YMDSplit input {
+    width: 4vw;
+    height: 3vw;
+    background-color: #141414;
+    border-style: none;
+    border-radius: 5px;
+    transition: all 0.3s;
+    text-align: center;
+    color: white
+}
+
+.updateButtonSplit {
+    grid-area: buttons;
+    justify-content: space-between;
+    margin-right: 15px;
+    display: flex;
+    font-size: 2vw;
+}
+
+.updateThumbnailButton.available,
+.updateButton.available {
+    opacity: 1;
+    cursor: pointer;
+    pointer-events: all;
+}
+
+.updateThumbnailButton.available:hover,
+.updateButton.available:hover {
+    transform: scale(1.05);
+}
+
+.updateThumbnailButton,
+.updateButton {
+    margin-top: 1vh;
+    height: 5vw;
+    width: 21vw;
+    border-radius: 5px;
+    background-color: #141414;
+    text-align: center;
+    opacity: 0.5;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+.updateButton {
+    margin-left: 1.5vw;
+    
+}
+
+.tagSelect {
+    grid-area: ymd;
+    margin-left: 65%;
+    text-align: center;
+    width: 35%;
+}
+
+.tagSelect h1 {
+    font-size: 1.25vw;
+    margin-bottom: 0.25vw;
+    width: calc(100% - 15px);
+}
+
+.tagEntry {
+    height: 3vw;
+    font-size: 1vw;
+    width: calc(85% - 15px);
+}
+
+.tagEntry::placeholder {
+    font-size: 0.7vw;
+}
+
+.valid {
+    color: #b5ffb5 !important;
+}
+
+.invalid {
+    color: #ffb5b5 !important;
+}
+
+.clipPreview.shine {
+    transform: scale(1.05);
+    filter: brightness(1.5);
+}
+
+.clipView {
+    grid-area: preview;
+    width: 90% !important;
+    border-radius: 5px;
+    box-shadow: rgba(145, 125, 125, 0.55) 1.95px 1.95px 10.6px;
+    margin: 2vh 5% 2vh 5%;
+    height: auto !important;
+}
+
+.videoControls {
+    margin-top: calc(2vh + 100vw * ((0.76 * 0.4 * 0.9) / 1.78) - 3vw) !important;
+    position: relative !important;
+}
+
+.togglePause {
+    margin-left: 10px !important;
+    margin-right: 5px !important;
+}
+
+.deleteClipButton {
+    margin-left: 85%;
+    grid-area: title;
+    height: calc(3vw + 10px);
+    margin-top: 15px;
+    width: 10%;
+    background-color: #141414;
+    border-radius: 5px;
+    transition: 0.3s;
+    cursor: pointer;
+    text-align: center;
+    font-size: 2vw;
+}
+
+.deleteClipButton.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.deleteClipButton:hover {
+    transform: scale(1,1);
+    background-color: #1f1f1f;
+}
+
+.clipManageBox:fullscreen .videoControls {
+    bottom: 0; 
+    margin-top: auto !important;
+}
+
+.mobileClose {
+    opacity: 0;
+    position: absolute;
+    text-align: center;
+    font-style: normal;
+    font-size: 20vh;
+    width: 80%;
+    transform: rotate(180deg);
+    margin-top: 30vh;
+    display: none;
+}
+
+.popup h1 {
+    font-size: 5vw;
+    font-family: dosisBold;
+}
+
+.popup div {
+    margin-top: 1vh;
+    display: flex;
+    justify-content: center;
+}
+
+.popup button {
+    width: 40%;
+    margin: 1vh 1vw 1vh 1vw;
+    border-style: solid;
+    border-radius: 5px;
+    height: 5vw;
+    font-size: 3vw;
+    cursor: pointer;
+}
+
+.popup button:nth-of-type(2) {
+    border-color: #df2a2a;
+    background-color: #df2a2a;
+}
+
+@media only screen and (max-width: 700px) {
+    .clipManageBox {
+        margin-top: 100%;
+        margin-left: 10%;
+        width: 80%;
+        height: calc(85vh - 20vw);
+        display: grid;
+        grid-template-areas: 
+                            'preview'
+                            'title'
+                            'description'
+                            'tag'
+                            'ymd'
+                            'manageButtons';
+        grid-template-columns:100%;
+        grid-template-rows: 44vw calc((100% - 44vw) * 0.15) calc((100% - 44vw) * 0.3) calc((100% - 44vw) * 0.2) calc((100% - 44vw) * 0.2) calc((100% - 44vw) * 0.15);
+        font-size: 3vh;
+    }
+
+    .deleteClipButton {
+        grid-area: manageButtons;
+        margin-left: 82.5%;
+        height: auto;
+        width: 12.5%;
+        margin-top: 1vw;
+        margin-bottom: 5%;
+        height: 80%;
+        font-size: 4vw;
+    }
+
+    .tagEntry,
+    .titleEntry,
+    .descEntry {
+        margin-left: 5%;
+        padding: 1.5vh 3% 0 3%;
+    }
+    
+    .clipDescTitle {
+        padding: 0;
+        margin-top: 1vh;
+        margin-left: 5%;
+        font-size: 2.5vh;
+    }
+
+    .gameEntry {
+        grid-area: ymd;
+        margin-left: 60%;
+        width: 29%;
+        height: auto;
+        font-size: calc(28px - 2vw);
+        text-align: center;
+        overflow-y: hidden;
+        overflow-x: auto;
+        padding: calc(3vh - 2vw) 3% 0 3%;
+        margin-bottom: 1vh;
+        text-wrap: nowrap;
+    }
+
+    .YMDSplit {
+        width: 50%;
+        margin-left: 5%;
+        margin-bottom: 1vh;
+        margin-top: 2%;
+        transition-duration: 0s !important;
+    }
+
+    .YMDSplit * {
+        transition-duration: 0s !important;
+    }
+
+    .YMDSplit div:nth-of-type(3) {
+        width: 35% !important;
+    }
+
+    .YMDSplit div {
+        height: 110%;
+        width: 30% !important;
+    }
+
+    .YMDSplit h1 {
+        font-size: 2vh;
+    }
+
+    .YMDSplit input {
+        width: 100% !important;
+        height: 50%;
+        font-size: calc(3vh - 2vw);
+        transition-duration: 0.3s !important;
+        transition-property: box-shadow;
+    }
+
+    .titleEntry {
+        margin-right: 0;
+        width: 85%;
+        padding-right: 2%;
+        height: calc(85% - 1.5vh);
+        font-size: 2vh;
+    }
+
+    .titleEntry::placeholder {
+        font-size: 2vh;
+    }
+
+    .descEntry {
+        margin-right: 0;
+        width: 85%;
+        padding-right: 2%;
+        height: calc(100% - 6.5vh);
+        font-size: 1.5vh;
+        margin-top: 5vh;
+    }
+
+    .tagSelect {
+        text-align:left;
+        margin-left: 0;
+        grid-area: tag;
+        width: 100%; 
+        transition-duration: 0s !important;
+    }
+
+    .tagSelect h1 {
+        margin-top: 1.5vw;
+        margin-left: 5%;
+        font-size: 2.5vh;
+        transition-duration: 0s !important;
+    }
+
+    .tagEntry {
+        margin-top: 1vh;
+        font-size: calc(1.5vh - 0.5vw);
+        width: 85%;
+        height: calc(100% - 6vh);
+        padding-right: 2%;
+        padding: 0.5vh 2% 0.5vh 3%;
+    }
+
+    .tagEntry::placeholder {
+        font-size: calc(1.5vh - 0.5vw);
+    }
+
+    .updateButtonSplit {
+        grid-area: manageButtons;
+        margin-left: 5%;
+        width: 75%;
+        height: 100%;
+        margin-top: 0;
+        margin-right: 5%;
+    }
+
+    .clipView {
+        margin-bottom: 0;
+    }
+    
+    .updateButton,
+    .updateThumbnailButton {
+        width: 55%;
+        height: 80%;
+        margin-bottom: 5%;
+        font-size: 3vw;
+    }
+
+    .gameDropdown {
+        grid-area: ymd;
+        margin-left: 5.5%;
+        width: 69%;
+        margin-top: 9vh;
+        height: 23.5vh;
+    }
+
+    .clipManageBox.showing {
+        margin-top: 22.5vw;
+    }
+
+    .gameTitle {
+        font-size: 3.5vh;
+    }
+
+    .videoControls {
+        margin-top: 42% !important;
+        margin-left: 5% !important;
+    }
+
+    .titleEntry:focus {
+        height: 4vh;
+    }
+
+    .clipDescTitle:has(~ .descEntry:focus) {
+        opacity: 1 !important;
+        position: absolute;
+    }
+
+    .descEntry:focus {
+        height: 15vh;
+        margin-top: 5.5vh;
+    }
+
+    .tagEntry:focus {
+        font-size: 2vh;
+        height: 5vh;
+    }
+
+    .tagSelect:focus-within {
+        width: 80% !important;
+        margin-top: 1vh;
+    }
+    
+    .tagSelect:focus-within h1 {
+        text-align: center;
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .YMDSplit:has(div:focus-within) input {
+        height: 5vh;
+        font-size: 3vh;
+    }
+
+    .YMDSplit:has(div:focus-within) {
+        width: 70% !important;
+    }
+
+    .gameEntry.focus {
+        margin-left: 5.5%;
+        height: 5vh;
+        font-size: 4vh;
+        padding: 1vh 2vw 1vh 2vw;
+    }
+
+    .gameEntry.focus ~ .gameDropdown .gameAbsDrop {
+        margin-top: 0;
+    }
+
+    .gameEntry.focus ~ .gameDropdown {
+        opacity: 1 !important;
+    }
+
+    .gameDropdown.show {
+        pointer-events: all;
+    }
+
+    .titleEntry:focus,
+    .descEntry:focus,
+    .gameEntry.focus,
+    .tagSelect:focus-within,
+    .YMDSplit:has(div:focus-within) {
+        position: absolute;
+        width: 65%;
+    }
+
+    .clipManageBox *:has(~ .titleEntry:focus ),
+    .clipManageBox *:has(~ .descEntry:focus ),
+    .clipManageBox *:has(~ .gameEntry.focus ),
+    .clipManageBox *:has(~ .tagSelect:focus-within ),
+    .clipManageBox *:has(~ .YMDSplit:focus-within ),
+    .titleEntry:focus ~ *,
+    .descEntry:focus ~ *,
+    .gameEntry.focus ~ *,
+    .tagSelect:focus-within ~ *,
+    .YMDSplit:has(div:focus-within) ~ * {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .titleEntry:focus ~ .mobileClose,
+    .descEntry:focus ~ .mobileClose,
+    .gameEntry.focus ~ .mobileClose,
+    .tagSelect:focus-within ~ .mobileClose,
+    .YMDSplit:has(div:focus-within) ~ .mobileClose {
+        opacity: 1 !important;
+        display: block;
+    }
+
+    .titleEntry:focus ~ .mobileClose {
+        margin-top: -5vh;
+    }
+
+    .descEntry:focus ~ .mobileClose {
+        margin-top: 10vh;
+    }
+
+    .gameEntry.focus ~ .mobileClose {
+        margin-top: 20vh;
+    }
+
+    .tagSelect:focus-within ~ .mobileClose {
+        margin-top: 0;
+    }
+
+    .YMDSplit:has(div:focus-within) ~ .mobileClose {
+        margin-top: 0;
+    }
+
+    .popup button {
+        font-size: 4vw;
+        height: auto;
+    }
+}
