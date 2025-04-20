@@ -10,3 +10,7 @@ lib/
 ffmpeg/
 lib64/
 whisperOutput/
+llama3-demo/
+llama/
+.DS_Store
+.cfg
