@@ -1,127 +1,215 @@
-# ClipsTimeline
+# ClipsTimeline 🎬
 
-## Overview
-**ClipsTimeline** is a robust and efficient video management tool designed for processing, compressing, storing, and managing video clips. It streamlines workflows by integrating advanced video compression, transcription, and metadata management into a single cohesive system.
+## Overview ✨
 
-The application leverages **FFmpeg** for video compression, **Whisper** for audio transcription, and **SQLite** for database management, providing an end-to-end solution for video storage and processing.
+**ClipsTimeline** is a modern, async-powered video management platform for uploading, compressing, transcribing, and organizing video clips. It features a web interface with Google OAuth login, timeline browsing, search, and robust metadata management.
 
----
-
-## Core Features
-
-- **Video Compression**  
-  Utilizes **FFmpeg** with CUDA hardware acceleration to compress videos efficiently.
-  - Automatically checks and ensures compressed file sizes are smaller than the original. If not, the original file is retained.
-
-- **Audio Transcription**  
-  Extracts audio from video files using **MoviePy** and transcribes it using **OpenAI's Whisper**.
-  - Transcriptions are stored in the database and are ready for search and analysis.
-
-- **Metadata Management**  
-  Stores video metadata, including file size, duration, title, description, tags, game, and owner information.
-  - Tracks processing statuses and timestamps for thumbnails.
-
-- **Search Functionality**  
-  Allows searching of videos by title, description, game, and audio transcript using a flexible keyword-based search.
-
-- **Task Queues**  
-  Implements asynchronous workers for handling video compression and audio transcription tasks concurrently.
-  - Dynamically manages queues for unprocessed and transcription-ready videos.
-
-- **Game Management**  
-  Supports adding new games with associated logos and retrieving a list of all games in the database.
-
-- **File Management**  
-  Handles file deletion, ensuring all related files (compressed, audio, and preview) are safely removed.
-  - Updates video metadata and supports adding new videos to the database.
+- **Video compression** with FFmpeg (CUDA-accelerated)
+- **Audio transcription** with OpenAI Whisper
+- **Async task queues** for scalable processing
+- **Google OAuth** authentication (Flask)
+- **SQLite** for metadata and user management
+- **Game and tag management** with logo support
 
 ---
 
-## File Structure
+## Core Features ⚙️
 
-```ClipsTimeline/
-├── bin/                     # Contains Whisper binary
-├── files/                   # Directory for video and audio files
-│   ├── <video_id>.mov       # Original videos
-│   ├── <video_id>-compressed.mp4  # Compressed videos
-│   ├── <video_id>-audio.wav # Extracted audio files
-├── logs/                    # Log files for debugging
-│   ├── uploadManager.log    # Main log file
-│   ├── ffmpeg/              # FFmpeg worker logs
-│   ├── whisper/             # Whisper transcription logs
-├── whisperOutput/           # Temporary Whisper transcription outputs
-├── durationOutput/          # Temporary FFprobe duration outputs
-├── clipStorage.py           # Handles database operations
-├── uploadManager.py         # Main script for task queue management
+- **Web Interface**: Upload, browse, search, and manage clips via Flask (`clipsServer.py`)
+- **User Authentication**: Google OAuth login, user sessions, and access control
+- **Video Compression**: FFmpeg with CUDA (`uploadProcessing.py`)
+- **Audio Transcription**: Whisper CLI integration
+- **Metadata Management**: Titles, descriptions, tags, games, creation dates, thumbnails
+- **Search**: By title, description, game, or transcript
+- **Game Management**: Add games and logos
+- **File Management**: Upload, update, delete, and thumbnail selection
+
+---
+
+## File Structure 📁
+
+```text
+ClipsTimeline/
+├── bin/                     # Whisper binary (if not in PATH)
+├── files/                   # Video, audio, and preview files
+│   ├── <video_id>.mov/mp4   # Original videos
+│   ├── <video_id>-compressed.mp4
+│   ├── <video_id>-audio.wav
+│   └── <video_id>-preview.jpg
+├── logs/
+│   ├── uploadManager.log
+│   ├── ffmpeg/ffmpegLog-*.log
+│   └── whisper/whisper-*.log
+├── whisperOutput/           # Whisper transcription outputs
+├── durationOutput/          # FFprobe duration outputs
+├── ffmpegOutput/            # FFprobe date outputs
+├── logos/                   # Game logos
+├── templates/               # Flask HTML templates
+├── static/                  # Static files (JS, CSS)
+├── clipStorage.py           # Async DB operations for clips
+├── clipsServer.py           # Flask web app (UI, API, Auth)
+├── uploadProcessing.py      # Async task queue manager
+├── user.py                  # Flask-Login user model
+├── db.py                    # Flask DB setup for user.db
+├── clipsReset.py            # DB/table reset utility
 ├── requirements.txt         # Python dependencies
-└── README.md                # Project documentation
+├── google_secret.txt        # Google OAuth credentials (not in repo)
+├── clips.db                 # SQLite DB for clips
+├── user.db                  # SQLite DB for users
+└── README.md
 ```
----
-
-## Workflow
-
-1. **Uploading Videos**  
-   Videos are uploaded into the `files/` directory with a unique ID.
-   - Metadata is stored in the `clips` table within the SQLite database.
-
-2. **Video Compression**  
-   - Uncompressed videos are detected by the `ffmpeg-Queue-Manager`.
-   - Videos are processed using `compress_video_ffmpeg()` and stored in the `files/` directory with the `-compressed.mp4` suffix.
-
-3. **Audio Transcription**  
-   - Compressed videos are queued for transcription by the `whisper-Queue-Manager`.
-   - Transcriptions are generated and stored in the database.
-
-4. **Metadata Search and Retrieval**  
-   - Users can search for videos using keywords in the title, description, game, or transcript.
-
-5. **File Deletion and Updates**  
-   - Videos can be deleted or updated, ensuring all associated files and database entries are handled appropriately.
 
 ---
 
-## Core Scripts
+## Workflow 🔄
 
-1. **clipStorage.py**  
-   Contains all database operations, including file info retrieval, updates, and metadata validation.
+1. **User Login**  
+   Users log in via Google OAuth. Only allowed Google IDs can access the app.
 
-2. **uploadManager.py**  
-   Manages task queues for video compression and transcription.
-   - Spawns workers to handle asynchronous processing efficiently.
+2. **Uploading Videos**  
+   Users upload videos via the web UI. Metadata and thumbnails are generated.
 
-3. **FFmpeg Integration**  
-   Handles video compression with hardware acceleration for better performance.
+3. **Async Processing**  
+   - `uploadProcessing.py` detects new uploads and compresses them with FFmpeg.
+   - After compression, audio is extracted and transcribed with Whisper.
 
-4. **Whisper Integration**  
-   Manages audio extraction and transcription using the Whisper model.
+4. **Browsing & Search**  
+   Users browse clips by timeline, search by keywords, and view details.
+
+5. **Management**  
+   Users can update metadata, change thumbnails, or delete their own clips.
 
 ---
 
-## How to Use
+## Example Usage 🚀
+
+### Uploading a Video (Web UI)
+
+1. Log in with Google.
+2. Go to the **Upload** page.
+3. Select a video file (`.mp4` or `.mov`).
+4. Optionally set the date/game.
+5. Submit and wait for processing.
+
+### Example: Querying Clip Info via API
+
+```python
+import requests
+
+session = requests.Session()
+# Assume you have authenticated via Google OAuth and have a session cookie
+
+resp = session.post("https://clipsviewer.uk.to/fileInfo?id=YOUR_VIDEO_ID")
+print(resp.json())
+```
+
+### Example: Uploading a Video via API
+
+```python
+import requests
+
+with open("myclip.mp4", "rb") as f:
+    files = {"videoFile": f}
+    resp = requests.post(
+        "https://clipsviewer.uk.to/upload?day=1&month=1&year=2024",
+        files=files,
+        # cookies/session as needed
+    )
+print(resp.json())
+```
+
+### Example: Deleting a Clip
+
+```python
+import requests
+
+resp = requests.post("https://clipsviewer.uk.to/delete-clip?id=YOUR_VIDEO_ID")
+print(resp.json())
+```
+
+### Example: Searching for Clips
+
+```python
+import requests
+
+resp = requests.post("https://clipsviewer.uk.to/search?searchStr=funny+gameplay")
+print(resp.json())
+```
+
+---
+
+## How to Run 🏁
 
 ### Prerequisites
-1. Install **Python 3.8+**.
-2. Install FFmpeg with CUDA support.
-3. Install **MoviePy**, **Whisper**, and other dependencies:
-   ```bash
-   pip install -r requirements.txt
 
-Steps to Run
-	1.	Clone the repository and navigate to the project directory:
+- Python 3.8+
+- FFmpeg with CUDA support
+- Whisper CLI (in `bin/` or in PATH)
+- All Python dependencies:
+  ```bash
+  pip install -r requirements.txt
+  ```
+- Google OAuth credentials in `google_secret.txt`:
+  ```
+  YOUR_GOOGLE_CLIENT_ID
+  YOUR_GOOGLE_CLIENT_SECRET
+  ```
 
-git clone <repository_url>
-cd ClipsTimeline
+### Database Initialization
 
+```bash
+export FLASK_APP=clipsServer.py
+flask init-db
+```
 
-	2.	Run the main script:
+### Running the Services
 
-python3 uploadManager.py
+#### Using systemd (Recommended)
 
+- See `clipsviewer.service` and `uploadmanager.service` for Gunicorn and processing worker setup.
 
-	3.	Upload video files to the files/ directory.
-	4.	Monitor logs for task progress:
-	•	General log: logs/uploadManager.log
-	•	FFmpeg logs: logs/ffmpeg/
-	•	Whisper logs: logs/whisper/
- 
-For further details or assistance, please contact Massimo Nodin.
+#### Manual (Development)
+
+```bash
+python3 uploadProcessing.py
+gunicorn -b 0.0.0.0:8000 --workers 4 clipsServer:app
+```
+
+---
+
+## Systemd Service Example
+
+```ini
+# /etc/systemd/system/clipsviewer.service
+[Unit]
+Description=A Clips Viewing Service
+After=network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/home/massimo-nodin/Documents/ClipsTimeline
+ExecStart=/usr/bin/gunicorn -b unix:/home/massimo-nodin/Documents/ClipsTimeline/clips.sock -w 9 -m 007 --preload --capture-output --log-level debug clipsServer:app
+
+[Install]
+WantedBy=multi-user.target
+```
+
+---
+
+## For Developers: Adding a New Game
+
+```python
+import requests
+
+resp = requests.post(
+    "https://clipsviewer.uk.to/new-game?gameName=Chess&logo=https://example.com/chess.jpg"
+)
+print(resp.json())
+```
+
+---
+
+## Contact
+
+For further details or assistance, please contact Massimo Nodin. 🧑‍💻
