@@ -7,3 +7,6 @@ bin/
 files/
 __pycache__/
 lib/
+ffmpeg/
+lib64/
+whisperOutput/
